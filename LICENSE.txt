@@ -1,0 +1,5 @@
+LICENSE:
+
+
+
+You can find the license for the source code in the URL given in the README section.
