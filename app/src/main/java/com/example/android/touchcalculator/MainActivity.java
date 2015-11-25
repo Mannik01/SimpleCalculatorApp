@@ -120,6 +120,7 @@ public class MainActivity extends Activity {
                     userInputText.setText(currentInput.subSequence(0, endIndex));
                 }
                 break;
+
             case SIGN: // Handle -/+ sign
                 // input has text and is different than initial value 0
                 if (currentInputLen > 0 && currentInput != "0") {
@@ -134,13 +135,16 @@ public class MainActivity extends Activity {
                     }
                 }
                 break;
+
             case CE: // Handle clear input
                 userInputText.setText("0");
                 break;
+
             case C: // Handle clear input and stack
                 userInputText.setText("0");
                 clearStacks();
                 break;
+
             case DECIMAL_SEP: // Handle decimal seperator
                 if (hasFinalResult || resetInput) {
                     userInputText.setText("0" + mDecimalSeperator);
@@ -151,6 +155,7 @@ public class MainActivity extends Activity {
                 else
                     userInputText.append(mDecimalSeperator);
                 break;
+
             case DIV:
             case PLUS:
             case MINUS:
@@ -177,6 +182,7 @@ public class MainActivity extends Activity {
 
                 resetInput = true;
                 break;
+
             case SQRT:
                 evalResult = currentInput.toString();
                 parsedValue = Double.parseDouble(evalResult.toString());
@@ -186,6 +192,14 @@ public class MainActivity extends Activity {
                 userInputText.setText(parsedValue + "");
                 break;
 
+            case RECIPROC:
+                evalResult = currentInput.toString();
+                parsedValue = Double.parseDouble(evalResult.toString());
+                parsedValue = 1 / parsedValue;
+
+                mInputStack.add(text);
+                userInputText.setText(parsedValue + "");
+                break;
 
             case CALCULATE:
                 if (mOperationStack.size() == 0)
@@ -200,6 +214,7 @@ public class MainActivity extends Activity {
                     hasFinalResult = true;
                 }
                 break;
+
             case M_ADD: // Add user input value to memory buffer
                 userInputValue = tryParseUserInput();
                 if (Double.isNaN(userInputValue))
